@@ -34,6 +34,6 @@ dependencies {
     // tag::tests[]
     testCompile("org.springframework.boot:spring-boot-starter-test")
     // end::tests[]
-    testCompile "junit:junit:4.11"
+   // testCompile "junit:junit:4.11"
 }
 
