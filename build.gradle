@@ -12,7 +12,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
-apply plugin: "net.saliman.cobertura"
+apply plugin: 'net.saliman.cobertura'
 
 jar {
     baseName = 'gs-spring-boot'
