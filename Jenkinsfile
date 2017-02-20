@@ -20,5 +20,5 @@ def archiveUnitTestResults() {
 }
 
 def archiveArtifacts() {
-    step([$class: 'ArtifactArchiver', artifacts: '**/build/*.war'])
+    step([$class: 'ArtifactArchiver', artifacts: 'build/**/*.war'])
 }
