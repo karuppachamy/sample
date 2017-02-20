@@ -1,20 +1,24 @@
 node {
-    stage 'Lets begin'
-    echo 'Hello World'
-    
-    stage "Checkout"
+    stage "Source Code Checkout"
     git url: "https://github.com/karuppachamy/sample.git"
-    
-    stage 'gradle Build'
-    sh "./gradlew clean build"
-    
-    stage 'Gradle Test'
+
+    stage 'Run Unit Tests'
     sh "./gradlew test"
-    
-    stage 'Collect Result'
+
+    stage 'Generate Test Results'
     archiveUnitTestResults()
+    
+    stage 'Build Artifacts'
+    sh "./gradlew clean build"  
+    
+    stage 'Archive Artifacts'
+    archiveArtifacts()
 }
 
 def archiveUnitTestResults() {
     step([$class: "JUnitResultArchiver", testResults: "build/**/TEST-*.xml"])
+}
+
+def archiveArtifacts() {
+    archiveArtifacts artifacts: 'build/*.war'
 }
