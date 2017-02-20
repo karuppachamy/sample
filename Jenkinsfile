@@ -17,8 +17,10 @@ node {
 
 def archiveUnitTestResults() {
     step([$class: "JUnitResultArchiver", testResults: "build/**/TEST-*.xml"])
+    step([$class: "JUnitResultArchiver", testResults: "build/**/TEST-*.xml"])
 }
 
 def archiveArtifacts() {
+    step([$class: 'ArtifactArchiver', artifacts: 'build/**/*.war'])
     step([$class: 'ArtifactArchiver', artifacts: 'build/**/*.war'])
 }
