@@ -22,4 +22,15 @@ pipeline {
           },
           "Archive Artifacts": {
             archiveArtifacts(artifacts: 'build/**/*.war', fingerprint: true)
-       
+            
+          }
+        )
+      }
+    }
+    stage('Send Artifactory') {
+      steps {
+        echo 'Send build to Artifactory'
+      }
+    }
+  }
+}
