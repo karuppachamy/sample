@@ -3,33 +3,45 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        echo 'Initiate Build'
+      }
+    }
+    stage('Source Code Checkout') {
+      steps {
+        git(url: 'https://github.com/karuppachamy/sample.git', branch: 'master', changelog: true, poll: true)
+      }
+    }
+    stage('Unit Test') {
+      steps {
         parallel(
-          "Build": {
-            echo 'Initiate the Build'
-            
-          },
-          "Source Code Checkout": {
-            git(url: 'https://github.com/karuppachamy/sample.git', branch: 'master', changelog: true, poll: true)
-            
-          },
-          "Run Unit Tests": {
+          "Unit Test": {
             sh './gradlew test'
             
           },
+          "Archive Results": {
+            junit(testResults: 'build/**/TEST-*.xml', healthScaleFactor: '2')
+            
+          }
+        )
+      }
+    }
+    stage('Build Artifacts') {
+      steps {
+        parallel(
           "Build Artifacts": {
-            sh './gradlew build'
+            sh './gradlew clean build'
             
           },
-          "Archive Artifacts": {
+          "Archive Build Artifacts": {
             archiveArtifacts(artifacts: 'build/**/*.war', fingerprint: true)
             
           }
         )
       }
     }
-    stage('Send Artifactory') {
+    stage('Artifactory') {
       steps {
-        echo 'Send build to Artifactory'
+        echo 'Pushing the artifact to Artifactory'
       }
     }
   }
