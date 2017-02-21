@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         parallel(
-          "": {
+          "Build": {
             echo 'Initiate the Build'
             
           },
