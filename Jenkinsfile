@@ -18,17 +18,18 @@ pipeline {
     }
     stage('Build Artifacts') {
       steps {
+        sh './gradlew clean build'
+      }
+    }
+    stage('Archieve WAR') {
+      steps {
         parallel(
-          "Build Artifacts": {
-            sh './gradlew clean build'
-            
-          },
-          "Archive Build Artifacts": {
-            archiveArtifacts(artifacts: 'build/**/*.war', fingerprint: true)
+          "Archieve WAR": {
+            archiveArtifacts 'build/**/*.war'
             
           },
           "Archive Test Results": {
-            junit 'build/**/TEST-*.xml'
+            junit(testResults: 'build/**/TEST-*.xml', keepLongStdio: true)
             
           }
         )
@@ -36,7 +37,7 @@ pipeline {
     }
     stage('Artifactory') {
       steps {
-        echo 'Pushing the artifact to Artifactory'
+        echo 'Begin publish artifactory'
       }
     }
   }
