@@ -13,16 +13,7 @@ pipeline {
     }
     stage('Unit Test') {
       steps {
-        parallel(
-          "Unit Test": {
-            sh './gradlew test'
-            
-          },
-          "Archive Results": {
-            junit(testResults: 'build/**/TEST-*.xml', healthScaleFactor: '2')
-            
-          }
-        )
+        sh './gradlew test'
       }
     }
     stage('Build Artifacts') {
@@ -34,6 +25,10 @@ pipeline {
           },
           "Archive Build Artifacts": {
             archiveArtifacts(artifacts: 'build/**/*.war', fingerprint: true)
+            
+          },
+          "Archive Test Results": {
+            junit 'build/**/TEST-*.xml'
             
           }
         )
