@@ -50,7 +50,7 @@ version = '1.0'
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId 'myArtifact'
+            artifactId 'usermanagement'
             from components.web
         }
     }
@@ -60,7 +60,7 @@ publishing {
               username 'admin'
               password 'admin123'
             }
-            url "http://184.72.193.142:8081/artifactory/gradle-dev"
+            url "http://184.72.193.142:8081/artifactory/generic-local"
         }
     }
 }
