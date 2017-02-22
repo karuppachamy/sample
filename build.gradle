@@ -50,7 +50,8 @@ version = '1.0'
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            from components.java
+            artifactId 'myArtifact'
+            from components.web
         }
     }
     repositories {
