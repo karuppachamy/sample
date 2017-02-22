@@ -17,6 +17,7 @@ apply plugin: 'war'
 apply plugin: 'maven-publish'
 
 
+
 war {
     baseName = 'sample'
 }
@@ -44,6 +45,7 @@ dependencies {
 
 group = 'user'
 version = '1.0'
+
 
 publishing {
     publications {
