@@ -38,4 +38,24 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     }
+    
 
+group = 'user'
+version = '1.0'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+              username 'admin'
+              password 'admin123'
+            }
+            url "http://184.72.193.142:8081/artifactory/gradle-dev"
+        }
+    }
+}
