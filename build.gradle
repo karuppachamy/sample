@@ -16,6 +16,7 @@ apply plugin: 'net.saliman.cobertura'
 apply plugin: 'war'
 apply plugin: 'maven-publish'
 
+
 war {
     baseName = 'sample'
 }
