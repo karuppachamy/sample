@@ -24,7 +24,7 @@ sonarqube {
     property "sonar.projectVersion", "1.0"
     property "sonar.sources", "src/main"
     property "sonar.tests", "src/tests"
-    property "sonar.ava.binaries", "bin"
+    property "sonar.java.binaries", "bin"
   }
 }
 
