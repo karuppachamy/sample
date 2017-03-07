@@ -60,7 +60,7 @@ publishing {
               username 'admin'
               password 'admin123'
             }
-            url "http://184.72.193.142:8081/artifactory/generic-local"
+            url "http://localhost:8081/artifactory/generic-local"
         }
     }
 }
