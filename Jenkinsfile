@@ -28,10 +28,10 @@ pipeline {
         sh './gradlew clean build'
       }
     }
-    stage('Archieve WAR') {
+    stage('Archive Artifacts') {
       steps {
         parallel(
-          "Archieve WAR": {
+          "Archive WAR": {
             archiveArtifacts 'build/**/*.war'
             
           },
